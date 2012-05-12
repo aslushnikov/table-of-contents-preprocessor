@@ -19,6 +19,7 @@ this utility, so you can treat it as a demo
     - [Installation](#installation)
     - [Usage](#usage)
     - [Example](#example)
+    - [Limitations](#limitations)
 
 ## Installation
 
