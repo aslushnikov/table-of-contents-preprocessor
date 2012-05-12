@@ -15,7 +15,6 @@ specified by "@@TOC@@" line.
 
 - [Table of Contents Generator](#table-of-contents-generator)
     - [About](#about)
-    - [Table of Contents](#table-of-contents)
     - [Installation](#installation)
     - [Usage](#usage)
     - [Example](#example)
@@ -31,7 +30,7 @@ npm install -g md-toc-filter
 
 ## Usage
 
-First, make sure you've got `@@TOC`` token on a separate
+First, make sure you've got `@@TOC@@` token on a separate
 line in your markdown-file. This is the place the table of contents
 will be inserted to.
 
