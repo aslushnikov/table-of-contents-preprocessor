@@ -11,10 +11,17 @@ This script will help you to do so. It extracts information of titles
 in a given file, and inserts a formatted table of contents in the position,
 specified by "@@TOC@@" line.
 
+## Installation
+
+Easy with npm
+```
+npm install -g md-toc-filter
+```
+
 ## Usage
 
 ```
-node toc.js README.md > NEW_README.md
+md-toc-filter README.md > NEW_README.md
 ```
 
 ## Example

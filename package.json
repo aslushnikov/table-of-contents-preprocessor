@@ -1,0 +1,28 @@
+{
+    "name": "md-toc-filter"
+  , "version": "0.9.0"
+  , "description": "This is a small node script to preprocess and create table of contents for markdown documents. It examines the document you pass to it, creates a table of contents based on your titles, and inserts it instead of every line that contains '@@TOC@@'"
+  , "keywords" : [
+    "table of contents",
+    "toc",
+    "contents"
+  ]
+  , "homepage": "https://github.com/aslushnikov/table-of-contents-preprocessor"
+  , "bugs": "https://github.com/aslushnikov/table-of-contents-preprocessor/issues"
+  , "author": {
+      "name": "Andrey Lushnikov",
+      "email": "aslushnikov@gmail.com",
+      "url": "http://aslushnikov.com"
+  }
+  , "files": [
+    "toc.js",
+    "README.md"
+  ]
+  , "bin": "./toc.js"
+  , "repository" : {
+      "type" : "git"
+    , "url" : "https://github.com/aslushnikov/table-of-contents-preprocessor"
+  }
+  , "engines" : { "node" : ">=0.6.14" }
+  , "private": false
+}
