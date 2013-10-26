@@ -58,7 +58,12 @@ function createTOC(depths, titles) {
 }
 
 function titleToUrl(title) {
-    return title.trim().toLowerCase().replace(/\s/g, '-').replace(/[^-0-9a-z]/g, '');
+    return title.trim()
+                .replace(/[a-z]+/ig, function(match) {
+                    return match.toLowerCase();
+                })
+                .replace(/\s/g, '-')
+                .replace(/[^-0-9a-zа-яё]/ig, '');
 }
 
 function tocLine(depth, title) {
