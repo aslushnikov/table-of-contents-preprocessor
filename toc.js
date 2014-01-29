@@ -25,7 +25,7 @@ function processData(data) {
     var minDepth = 1000000;
     for(var i = 0; i < lines.length; i++) {
         var line = lines[i];
-        var m = line.match(/^\s*(#+)(.*)$/);
+        var m = line.match(/^\s*(#+)(.*)\s*$/);
         if (!m) continue;
         minDepth = Math.min(minDepth, m[1].length);
         depths.push(m[1].length);
