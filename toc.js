@@ -1,16 +1,25 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var program = require('commander');
+
+program.version("0.9.0")
+       .option("-d, --depth <n>", "Specifies the maximal header depth for the TOC", parseInt)
+       .parse(process.argv);
 
 var FOUR_SPACES = "    ";
 
 var leftIndents = [""];
 
+if(process.argv.length < 3) {
+    program.help();
+}
+
 for(var i = 1; i < 10; i++) {
     leftIndents.push(leftIndents[i-1] + FOUR_SPACES);
 }
 
-fs.readFile(process.argv[2], 'utf-8', function(err, data) {
+fs.readFile(process.argv[process.argv.length-1], 'utf-8', function(err, data) {
     if (err) {
         throw err;
     }
@@ -25,11 +34,10 @@ function processData(data) {
     var minDepth = 1000000;
     for(var i = 0; i < lines.length; i++) {
         var line = lines[i];
-        var m = line.match(/^(#+)(.*)\s*$/);
-        if (!m) continue;
-        minDepth = Math.min(minDepth, m[1].length);
-        depths.push(m[1].length);
-        titles.push(m[2]);
+        var headingLine = line.match(/^(#+)(.*)\s*$/);
+        if (!headingLine) continue;
+        minDepth = Math.min(minDepth, headingLine[1].length);
+        addHeadingLine(headingLine, depths, titles);
     }
 
     for(var i = 0; i < depths.length; i++) {
@@ -47,6 +55,13 @@ function processData(data) {
     }
     console.log(lines.join('\n'));
     //console.log('\n');
+}
+
+function addHeadingLine(headingLine, depths, titles) {
+    if(program.depth >= headingLine[1].length || !program.depth) {
+        depths.push(headingLine[1].length);
+        titles.push(headingLine[2]);
+    }
 }
 
 function createTOC(depths, titles) {
