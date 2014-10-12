@@ -46,6 +46,10 @@ md-toc-filter -d 2 README.md > NEW_README.md
 ```
 This will include headings up to depth 2 (##).
 
+Pass the `-a` argument to use an alternative link generation mode, e.g. convert
+the heading "3.1.1. Foo" to "3-1-1-foo" instead of "311-foo". This argument will
+also strip all the non-Latin and non-numeric characters. This is useful for some
+Markdown renderers like the GitLab Markdown renderer.
 ## Example
 
 ```

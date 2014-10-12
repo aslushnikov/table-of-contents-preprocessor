@@ -5,6 +5,10 @@ var program = require('commander');
 
 program.version("0.9.0")
        .option("-d, --depth <n>", "Specifies the maximal header depth for the TOC", parseInt)
+       .option("-a, --alternativeLinks", "Use alternative links for headings.\n" +
+                                        "\tE.g. 1.1. Foo will become 1-1-foo instead of 11-foo. This option also\n" +
+                                        "\tstrips all non-Latin and non-numeric characters from the URLs. Useful for\n" +
+                                        "\tsome Markdown flavors like the GitLab Flavored Markdown")
        .parse(process.argv);
 
 var FOUR_SPACES = "    ";
@@ -73,12 +77,16 @@ function createTOC(depths, titles) {
 }
 
 function titleToUrl(title) {
-    return title.trim()
-                .replace(/[a-z]+/ig, function(match) {
-                    return match.toLowerCase();
-                })
-                .replace(/\s/g, '-')
-                .replace(/[^-0-9a-zа-яё]/ig, '');
+    var trimmedTitle = title.trim()
+                            .replace(/[a-z]+/ig, function(match) {
+                                return match.toLowerCase();
+                            });
+    if (program.alternativeLinks) {
+        return trimmedTitle.replace(/[^0-9a-z]+/ig, '-');
+    } else {
+        return trimmedTitle.replace(/\s/g, '-')
+                           .replace(/[^-0-9a-zа-яё]/ig, '');
+    }
 }
 
 function tocLine(depth, title) {
