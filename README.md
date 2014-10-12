@@ -39,6 +39,12 @@ Then, preprocess the file:
 md-toc-filter README.md > NEW_README.md
 ```
 
+You can also include the maximal heading depth to be rendered as an optional
+first argument:
+```
+md-toc-filter 3 README.md > NEW_README.md
+```
+This will render headings up to depth "###".
 ## Example
 
 ```
