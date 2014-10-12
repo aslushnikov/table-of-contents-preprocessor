@@ -62,8 +62,7 @@ function titleToUrl(title) {
                 .replace(/[a-z]+/ig, function(match) {
                     return match.toLowerCase();
                 })
-                .replace(/\s/g, '-')
-                .replace(/[^-0-9a-zа-яё]/ig, '');
+                .replace(/[^0-9a-z]+/ig, '-');
 }
 
 function tocLine(depth, title) {
