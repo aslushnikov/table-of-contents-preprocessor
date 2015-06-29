@@ -35,11 +35,14 @@ function processData(data) {
 
     var titles = [];
     var depths = [];
+    var inCodeBlock = false;
     var minDepth = 1000000;
     for(var i = 0; i < lines.length; i++) {
         var line = lines[i];
+        var codeBlockBeginOrEnd = line.match(/^```.*$/);
+        if (codeBlockBeginOrEnd) inCodeBlock = !inCodeBlock;
         var headingLine = line.match(/^(#+)(.*)\s*$/);
-        if (!headingLine) continue;
+        if (!headingLine || inCodeBlock) continue;
         minDepth = Math.min(minDepth, headingLine[1].length);
         addHeadingLine(headingLine, depths, titles);
     }
